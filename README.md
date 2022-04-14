@@ -3,7 +3,7 @@ different blend modes. The result can be read as a bitmap or list of Points to b
 used ie on a Map.
 
 ## Features
-![Pub Version](https://img.shields.io/pub/v/finger_painter) ![Pub Publisher](https://img.shields.io/pub/publisher/finger_painter) ![YouTube Channel Views](https://img.shields.io/youtube/channel/views/UCQgZ0yw1xroMNjWYDGcOYKQ?style=social) ![Twitter Follow](https://img.shields.io/twitter/follow/lildeimos?style=social) ![GitHub followers](https://img.shields.io/github/followers/alnitak?style=social)
+![Pub Version](https://img.shields.io/pub/v/finger_painter) ![Pub Publisher](https://img.shields.io/pub/publisher/finger_painter)
 
 ![Image](https://github.com/alnitak/finger_painter/blob/main/images/painter.gif)
 
