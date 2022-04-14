@@ -2,7 +2,7 @@ name: finger_painter
 description: Painting package that let you finger paint with different brushes and
   different blend modes. The result can be read as a bitmap or list of Points to be
   used ie on a Map.
-version: 0.9.0
+version: 0.9.1
 homepage: https://github.com/alnitak/finger_painter
 
 environment:

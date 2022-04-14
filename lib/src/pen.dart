@@ -2,7 +2,6 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /// used to store the last state of drawing as ui.Image
 ui.Image? image;
@@ -32,7 +31,20 @@ class Drawing {
   List<double> distances = [];
 }
 
-/// class to store the current pen parameters
+/// class to store the current pen parameters.
+///
+/// [penType] store the enum with , ,  :
+/// [PenType.pencil] constant stroke width using [strokeMinWidth]
+/// [PenType.paintbrush] variable stroke width. Near [strokeMinWidth]
+/// when moving slowly, near *strokeMaxWidth* when moving fast.
+/// [PenType.paintbrush2] variable stroke width. Near [strokeMaxWidth]
+/// when moving slowly, near *strokeMinWidth* when moving fast.|
+/// [strokeColor] pen color, default [Colors.black]
+/// [strokeMinWidth] Pen width when moving slowing, default 3
+/// [strokeMaxWidth] Pen width when moving fast, default 10
+/// [blurSigma] Blur stroke, default 0
+/// [blendMode]	Painting blending mode.
+/// See [BlendMode], default [BlendMode.srcOver]
 class PenState {
   PenType penType = PenType.paintbrush;
   Color strokeColor = Colors.black;

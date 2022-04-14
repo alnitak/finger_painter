@@ -82,7 +82,7 @@ Painter(
 | setMinStrokeWidth(double width)		|				| Set the minimum stroke width.|
 | setMaxStrokeWidth(double width)		|				| Set the maximum stroke width.|
 | setBlurSigma(double sigma)			|				| Set the blur. 0 means no blur.|
-| setBackgroundImage(Uint8List image)	|				| Set the background image. The painting will modify this image. 
+| setBackgroundImage(Uint8List image)	|				| Set the background image. The painting will not modify this image. 
 
 ### 📜  PenState
 |Method				| Default	| Description |

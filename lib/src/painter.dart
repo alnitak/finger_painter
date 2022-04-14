@@ -9,7 +9,22 @@ import 'bmp_header.dart';
 import 'paintbrush.dart';
 import 'pen.dart';
 
-/// Controller to access painter parameters
+/// Controller to access painter parameters.
+///
+/// [getState] Get current [PenState]
+/// [getImageBytes] Get current drawing image as uncompressed
+/// 32bit BMP Uint8List.
+/// [getPoints] Get the point list drawn.
+/// [clearContent] Clear current drawings.
+/// [setPenType] Set [PenType]
+/// [setBlendMode] Set the painting [BlendMode]. [BlendMode.dstOut] can
+/// be used as an eraser pen.
+/// [setStrokeColor] Set stroke color.
+/// [setMinStrokeWidth] Set the minimum stroke width.
+/// [setMaxStrokeWidth] Set the maximum stroke width.
+/// [setBlurSigma] Set the blur. 0 means no blur.
+/// [setBackgroundImage] Set the background image. The painting will
+/// not modify this image.
 class PainterController {
   VoidCallback? _clearContent;
   Function? _setPenType;
@@ -70,6 +85,16 @@ class PainterController {
   }
 }
 
+/// Main painter class.
+///
+/// [controller] Get and set Painter parameters (see *PainterController* below).
+/// [backgroundColor] Color of the active painting area.
+/// [size] Size of painting area. If not set it takes the *child* area.
+/// If also the *child* is not set, it will take the available
+/// size from the parent.
+/// [child] Child Widget to put as the background of the painting area.
+/// [onDrawingEnded] Callbackd that returns the last drawing as Uint8List
+/// filled with uncompressed BMP 32 bpp format.
 class Painter extends StatefulWidget {
   final Widget? child;
   final Color backgroundColor;
@@ -92,6 +117,7 @@ class Painter extends StatefulWidget {
   State<Painter> createState() => _PainterState();
 }
 
+/// State of [Painter]
 class _PainterState extends State<Painter> {
   late Pen pen;
   late Completer<Size> _completer;
@@ -219,7 +245,7 @@ class _PainterState extends State<Painter> {
   }
 }
 
-/// Painter class to draw the last image
+/// CustomPainter class to draw the last drawing
 class BackgroundLayer extends CustomPainter {
   final ui.Image? image;
 
