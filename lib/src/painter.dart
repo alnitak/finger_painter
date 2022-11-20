@@ -142,6 +142,7 @@ class _PainterState extends State<Painter> {
       if (widget.onDrawingEnded != null) {
         widget.onDrawingEnded!(imgBytesList);
       }
+      drawing.points.clear();
     }
   }
 
@@ -164,6 +165,7 @@ class _PainterState extends State<Painter> {
       if (widget.onDrawingEnded != null) {
         widget.onDrawingEnded!(imgBytesList!);
       }
+      drawing.points.clear();
     };
     if (mounted) setState(() {});
   }

@@ -142,7 +142,6 @@ class _Painter extends CustomPainter {
     }
 
     if (andSaveImage) {
-      drawing.points.clear();
       drawing.strokeWidths.clear();
       drawing.distances.clear();
       ui.Picture picture = recorder.endRecording();

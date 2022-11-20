@@ -45,6 +45,7 @@ class _MyAppState extends State<MyApp> {
               controller: painterController,
               backgroundColor: const Color(0xFFF0F0F0),
               onDrawingEnded: (bytes) async {
+                print('${painterController.getPoints()?.length} drawn points');
                 setState(() {});
               },
               size: const Size(double.infinity, 250),

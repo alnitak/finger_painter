@@ -9,7 +9,7 @@ class Bmp32Header {
   int rgba32HeaderSize = 122;
   int bytesPerPixel = 4;
 
-  // set BMP
+  /// set a BMP from bytes
   Bmp32Header.setBmp(Uint8List imgBytes) {
     ByteData bd = imgBytes.buffer.asByteData();
     width = bd.getInt32(0x12, Endian.little);
@@ -18,7 +18,7 @@ class Bmp32Header {
     bmp = imgBytes;
   }
 
-  // set BMP header and memory to use
+  /// set BMP header and memory to use
   Bmp32Header.setHeader(this.width, this.height) {
     contentSize = width * height;
     bmp = Uint8List(rgba32HeaderSize + contentSize * bytesPerPixel);
@@ -36,11 +36,9 @@ class Bmp32Header {
     bd.setUint32(0x12, width, Endian.little);
     bd.setUint32(0x16, -height, Endian.little);
 
-    bd.setUint8(0x1A, 1);
-    bd.setUint8(0x1B, 0);
+    bd.setUint16(0x1A, 1, Endian.little);
 
     bd.setUint8(0x1C, 32);
-    bd.setUint8(0x1D, 32 >> 8);
 
     bd.setUint32(0x1E, 3, Endian.little);
 
@@ -52,19 +50,19 @@ class Bmp32Header {
     bd.setUint32(0x42, 0xff000000, Endian.little);
   }
 
-  // Insert the [bitmap] after the header and return the BMP
+  /// Insert the [bitmap] after the header and return the BMP
   Uint8List storeBitmap(Uint8List bitmap) {
     bmp.setRange(rgba32HeaderSize, contentSize * bytesPerPixel, bitmap);
     return bmp;
   }
 
-  // clear BMP pixels leaving the header untouched
+  /// clear BMP pixels leaving the header untouched
   Uint8List clearBitmap() {
     bmp.fillRange(rgba32HeaderSize, bmp.length, 0);
     return bmp;
   }
 
-  // set BMP pixels color
+  /// set BMP pixels color
   Uint8List setBitmapBackgroundColor(int r, int g, int b, int a) {
     int value = (((r & 0xff) << 24) |
             ((g & 0xff) << 16) |

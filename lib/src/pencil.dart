@@ -10,7 +10,7 @@ import 'utils.dart';
 /// the stroke is fixed to [PenState.strokeMinWidth]
 class Pencil with Pen {
   @override
-  int averageStrokes = 10; // not used
+  int averageStrokes = 10; // not used in Pencil
 
   @override
   CustomPainter painter = _Painter();
@@ -26,7 +26,6 @@ class Pencil with Pen {
   onPointerMove(PointerMoveEvent event) {
     drawing.points.add(event.localPosition);
     drawing.path.lineTo(event.localPosition.dx, event.localPosition.dy);
-
     painter = _Painter();
   }
 
@@ -95,7 +94,6 @@ class _Painter extends CustomPainter {
       recorderPaint.strokeWidth = penState.strokeMinWidth;
       canvas2?.drawPath(drawing.path, recorderPaint);
 
-      drawing.points.clear();
       drawing.path.reset();
       ui.Picture picture = recorder.endRecording();
       blendPictures(size, penState.blendMode, picture, onImageSaved);

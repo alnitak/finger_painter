@@ -1,6 +1,4 @@
-Painting package that let you finger paint with different brushes and 
-different blend modes. The result can be read as a bitmap or list of Points to be 
-used ie on a Map.
+Painting package that let you finger paint with different brushes and different blend modes. The result can be read as a bitmap or list of Points to be used ie on a Map.
 
 ## Features
 ![Pub Version](https://img.shields.io/pub/v/finger_painter) ![Pub Publisher](https://img.shields.io/pub/publisher/finger_painter)
@@ -66,7 +64,7 @@ Painter(
 |backgroundColor	|false	| Colors.transparent| Color of the active painting area. |
 |size				|false	|					| Size of painting area. If not set it takes the *child* area. If also the *child* is not set, it will take the available size from the parent.|
 |child				|false	|					| Child Widget to put as the background of the painting area|
-|onDrawingEnded	|false	|					| Callbackd that returns the last drawing as Uint8List filled with uncompressed BMP 32 bpp format.|
+|onDrawingEnded	|false	|					| Callbackd that returns the last drawing as Uint8List filled with uncompressed BMP 32 bpp format. Here it's possible to get the drawn point with *controller.getPoints()*|
 
 ### 📜  PainterController
 |Method								| return type | Description |
@@ -86,12 +84,12 @@ Painter(
 ### 📜  PenState
 |Method				| Default	| Description |
 | -----------------------------------	| ----------------| ----------------- |
-|penType				|PenType.paintbrush|enum with *pencil, paintbrush, paintbrush2*.<br/>*pencil*: constant stroke width using *strokeMinWidth* <br/>*paintBrush*: variable stroke width. Near *strokeMinWidth* when moving slowly, near *strokeMaxWidth* when moving fast. <br/>*paintBrush2*: variable stroke width. Near *strokeMaxWidth* when moving slowly, near *strokeMinWidth* when moving fast.|
+|penType				|PenType.paintbrush|enum with *pencil, paintbrush, paintbrush2*.</br>*pencil*: constant stroke width using *strokeMinWidth* </br>*paintBrush*: variable stroke width. Near *strokeMinWidth* when moving slowly, near *strokeMaxWidth* when moving fast. </br>*paintBrush2*: variable stroke width. Near *strokeMaxWidth* when moving slowly, near *strokeMinWidth* when moving fast.|
 |strokeColor			|Colors.black	|pen color|
 |strokeMinWidth		|3				|Pen width when moving slowing.|
 |strokeMaxWidth		|10			|Pen width when moving fast.|
 |blurSigma				|0				|Blur stroke.|
-|blendMode			|ui.BlendMode.srcOver|Painting blending mode. See ***[ui.BlendMode](https://api.flutter.dev/flutter/dart-ui/BlendMode.html) ***|
+|blendMode			|ui.BlendMode.srcOver|Painting blending mode. See [ui.BlendMode](https://api.flutter.dev/flutter/dart-ui/BlendMode.html) |
 
 ### ⚠️ Note on **web**
 

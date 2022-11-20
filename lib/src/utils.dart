@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-
-import 'package:flutter/cupertino.dart';
+import 'dart:ui';
 
 import 'bmp_header.dart';
 import 'pen.dart';
@@ -40,7 +39,8 @@ Future blendPictures(Size size, BlendMode mode, ui.Picture picture,
 
     // on web with html renderer, this throws an error:
     // Error: ImageCodecException: Failed to decode image data.
-    // Hence when using this package on web, the canvaskit renderer must be used, ie:
+    // Hence when using this package on web, the canvaskit
+    // renderer must be used, ie:
     // flutter run -d chrome --web-renderer canvaskit
     ui.decodeImageFromList(imgBytesList!, (ui.Image img) {
       image = img;

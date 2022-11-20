@@ -56,23 +56,23 @@ class PenState {
 
 /// all brushes pen classes are declared with this mixin
 mixin Pen {
-  // takes the last N points distances to calculate the stroke width
+  /// takes the last N points distances to calculate the stroke width
   int get averageStrokes;
 
   set averageStrokes(int average);
 
-  // CustomPainter sub-class to use
+  /// CustomPainter sub-class to use
   CustomPainter get painter;
 
   set painter(CustomPainter painter);
 
-  // functions to call while painting
+  /// functions to call while painting
   onPointerDown(PointerDownEvent event);
 
   onPointerMove(PointerMoveEvent event);
 
   onPointerUp(PointerUpEvent event);
 
-  // callback that return the last available drawing
+  /// callback that return the last available drawing
   Function(Uint8List? imgBytes)? onImageSaved;
 }
