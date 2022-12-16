@@ -64,13 +64,23 @@ class Bmp32Header {
 
   /// set BMP pixels color
   Uint8List setBitmapBackgroundColor(int r, int g, int b, int a) {
-    int value = (((r & 0xff) << 24) |
-            ((g & 0xff) << 16) |
-            ((b & 0xff) << 8) |
-            ((a & 0xff) << 0)) &
+    int value = (((r & 0xff) << 0) |
+            ((g & 0xff) << 8) |
+            ((b & 0xff) << 16) |
+            ((a & 0xff) << 24)) &
         0xFFFFFFFF;
-    (bmp.sublist(rgba32HeaderSize) as Uint32List)
-        .fillRange(0, bmp.length, value);
+    print('${value.toRadixString(16)}   ${a.toRadixString(16)} ${r.toRadixString(16)} ${g.toRadixString(16)} ${b.toRadixString(16)}');
+    Uint32List tmp = bmp
+        .sublist(rgba32HeaderSize)
+        .buffer
+        .asUint32List();
+    tmp.fillRange(0, tmp.length, value);
+
+    var bytes = BytesBuilder();
+    bytes.add(bmp.sublist(0, rgba32HeaderSize));
+    bytes.add(tmp.buffer.asUint8List());
+    bmp = bytes.toBytes();
+
     return bmp;
   }
 }

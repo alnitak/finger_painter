@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     painterController = PainterController()
-      ..setStrokeColor(Colors.red)
+      ..setStrokeColor(Colors.black)
       ..setMinStrokeWidth(3)
       ..setMaxStrokeWidth(15)
       ..setBlurSigma(0.0)
@@ -92,7 +92,7 @@ class _ControlsState extends State<Controls> {
             if (widget.imgBytesList != null)
               Container(
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFFFFF),
+                  color: const Color(0x00FFFFFF),
                   border: Border.all(
                     color: const Color(0xFF000000),
                     style: BorderStyle.solid,
@@ -177,7 +177,8 @@ class _ControlsState extends State<Controls> {
             FloatingActionButton(
                 backgroundColor: Colors.red,
                 child: const Icon(Icons.delete_outline),
-                onPressed: () => widget.pc?.clearContent()),
+                onPressed: () => widget.pc
+                    ?.clearContent(clearColor: const Color(0xfff0f0ff))),
           ],
         ),
 

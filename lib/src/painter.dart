@@ -15,7 +15,7 @@ import 'pen.dart';
 /// [getImageBytes] Get current drawing image as uncompressed
 /// 32bit BMP Uint8List.
 /// [getPoints] Get the point list drawn.
-/// [clearContent] Clear current drawings.
+/// [clearContent] Clear current drawings with the given [celarColor].
 /// [setPenType] Set [PenType]
 /// [setBlendMode] Set the painting [BlendMode]. [BlendMode.dstOut] can
 /// be used as an eraser pen.
@@ -26,12 +26,12 @@ import 'pen.dart';
 /// [setBackgroundImage] Set the background image. The painting will
 /// not modify this image.
 class PainterController {
-  VoidCallback? _clearContent;
+  Function({Color? clearColor})? _clearContent;
   Function? _setPenType;
   Function(Uint8List)? _setBackgroundImage;
 
   _setController(
-    VoidCallback clearContent,
+    Function({Color? clearColor}) clearContent,
     Function(PenType type)? setPenType,
     Function(Uint8List)? setBackgroundImage,
   ) {
@@ -52,12 +52,12 @@ class PainterController {
     return drawing.points;
   }
 
-  clearContent() {
-    if (_clearContent != null) _clearContent!();
+  clearContent({Color? clearColor}) {
+    if (_clearContent != null) _clearContent!(clearColor: clearColor);
   }
 
   setPenType(PenType type) {
-    if (_setPenType != null) _setPenType!(type);
+    penState.penType = type;
   }
 
   setBlendMode(ui.BlendMode mode) {
@@ -130,15 +130,26 @@ class _PainterState extends State<Painter> {
     _size = widget.size;
     _completer = Completer<Size>();
 
+    print('****************** ${penState.penType}');
     _setPenType(penState.penType);
     widget.controller
         ?._setController(_clearContent, _setPenType, _setBackgroundImage);
   }
 
-  _clearContent() {
+  _clearContent({Color? clearColor}) {
     if (imgBytesList != null) {
-      imgBytesList = Bmp32Header.setBmp(imgBytesList!).clearBitmap();
-      image = null;
+      if (clearColor == null) {
+        imgBytesList = Bmp32Header.setBmp(imgBytesList!).clearBitmap();
+      } else {
+        imgBytesList =
+            Bmp32Header.setBmp(imgBytesList!).setBitmapBackgroundColor(
+          clearColor.red,
+          clearColor.green,
+          clearColor.blue,
+          clearColor.alpha,
+        );
+      }
+      image = _setBackgroundImage(imgBytesList!);
       if (widget.onDrawingEnded != null) {
         widget.onDrawingEnded!(imgBytesList);
       }

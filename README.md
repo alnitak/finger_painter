@@ -67,19 +67,19 @@ Painter(
 |onDrawingEnded	|false	|					| Callbackd that returns the last drawing as Uint8List filled with uncompressed BMP 32 bpp format. Here it's possible to get the drawn point with *controller.getPoints()*|
 
 ### 📜  PainterController
-|Method								| return type | Description |
-| -------------------------------------------------------------| --------------------| ----------------- |
-| getState() 								|PenState?		| Get the *penType, strokeColor, strokeMinWidth, strokeMaxWidth, blendMode*. |
-| getImageBytes()						| Uint8List?		| Get current drawing image  as uncompressed 32bit BMP *Uint8List*. |
-| getPoints() 							| List<Offset\>?	| Get the point list drawn. |
-| clearContent()							|				| Clear current drawings.|
-| setPenType(PenType type)				|				| Set pen type: *pencil, paintbrush, paintbrush2*.|
-| setBlendMode(ui.BlendMode mode)	|				| Set the painting [blending mode](https://api.flutter.dev/flutter/dart-ui/BlendMode.html). ***ui.BlendMode.dstOut*** can be used as an eraser pen.|
-| setStrokeColor(Color color)			|				| Set stroke color.|
-| setMinStrokeWidth(double width)		|				| Set the minimum stroke width.|
-| setMaxStrokeWidth(double width)		|				| Set the maximum stroke width.|
-| setBlurSigma(double sigma)			|				| Set the blur. 0 means no blur.|
-| setBackgroundImage(Uint8List image)	|				| Set the background image. The painting will not modify this image. 
+|Method								| return type | Description                                                                                                                                       |
+| -------------------------------------------------------------| --------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| getState() 								|PenState?		| Get the *penType, strokeColor, strokeMinWidth, strokeMaxWidth, blendMode*.                                                                        |
+| getImageBytes()						| Uint8List?		| Get current drawing image  as uncompressed 32bit BMP *Uint8List*.                                                                                 |
+| getPoints() 							| List<Offset\>?	| Get the point list drawn.                                                                                                                         |
+| clearContent({Color? clearColor})		|				| Clear current drawings with [clearColor] color. Default is transparent.                                                                           |
+| setPenType(PenType type)				|				| Set pen type: *pencil, paintbrush, paintbrush2*.                                                                                                  |
+| setBlendMode(ui.BlendMode mode)	|				| Set the painting [blending mode](https://api.flutter.dev/flutter/dart-ui/BlendMode.html). ***ui.BlendMode.dstOut*** can be used as an eraser pen. |
+| setStrokeColor(Color color)			|				| Set stroke color.                                                                                                                                 |
+| setMinStrokeWidth(double width)		|				| Set the minimum stroke width.                                                                                                                     |
+| setMaxStrokeWidth(double width)		|				| Set the maximum stroke width.                                                                                                                     |
+| setBlurSigma(double sigma)			|				| Set the blur. 0 means no blur.                                                                                                                    |
+| setBackgroundImage(Uint8List image)	|				| Set the background image. The painting will not modify this image.                                                                                
 
 ### 📜  PenState
 |Method				| Default	| Description |
