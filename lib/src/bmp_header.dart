@@ -69,7 +69,6 @@ class Bmp32Header {
             ((b & 0xff) << 16) |
             ((a & 0xff) << 24)) &
         0xFFFFFFFF;
-    print('${value.toRadixString(16)}   ${a.toRadixString(16)} ${r.toRadixString(16)} ${g.toRadixString(16)} ${b.toRadixString(16)}');
     Uint32List tmp = bmp
         .sublist(rgba32HeaderSize)
         .buffer
